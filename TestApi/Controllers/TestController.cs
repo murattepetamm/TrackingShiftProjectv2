@@ -14,17 +14,14 @@ namespace TestApi.Controllers
     [ApiController]
     public class TestController : ControllerBase
     {
-        IEmployeeDal<TeamsOfEmployee> _employeeDal;
-        public TestController(IEmployeeDal employeeDal)
-        {
-            _employeeDal = employeeDal;
-        }
+
 
         [HttpGet("/EmployeeGetAll")]
         public string GetAllEmploye()
         {
-            var x = JsonConvert.SerializeObject(_employeeDal.GetAll().FirstOrDefault());
-            return x;
+            //var x = JsonConvert.SerializeObject(_employeeDal.GetAll().FirstOrDefault());
+            //return x;
+            return null;
         }
     }
 }
