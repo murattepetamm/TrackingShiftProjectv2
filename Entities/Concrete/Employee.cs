@@ -18,5 +18,6 @@ namespace Entities.Concrete
         public string Adress { get; set; }
         public bool IsActive { get; set; }
         public int TitleId { get; set; }
+        public string TitleName { get; set; }
     }
 }
