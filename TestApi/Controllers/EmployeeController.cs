@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using DataAccess.Abstract;
+using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,17 +12,19 @@ namespace TestApi.Controllers
     [ApiController]
     public class EmployeeController : ControllerBase
     {
-        public EmployeeController()
+        IEmployeeDal _employeeDal;
+        public EmployeeController(IEmployeeDal employeeDal)
         {
-
+            _employeeDal = employeeDal;
         }
 
         [HttpGet("/EmployeeGetAll")]
         public string GetAllEmploye()
         {
+            _employeeDal.GetAll();
             //var x = JsonConvert.SerializeObject(_employeeDal.GetAll().FirstOrDefault());
             //return x;
-            return null;
+            return JsonConvert.SerializeObject(_employeeDal.GetAll().FirstOrDefault());
         }
     }
 }

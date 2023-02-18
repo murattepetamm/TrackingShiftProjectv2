@@ -16,7 +16,7 @@ namespace TestApi.Controllers
     {
 
 
-        [HttpGet("/EmployeeGetAll")]
+        [HttpGet("/EmployeeGetAll2")]
         public string GetAllEmploye()
         {
             //var x = JsonConvert.SerializeObject(_employeeDal.GetAll().FirstOrDefault());
