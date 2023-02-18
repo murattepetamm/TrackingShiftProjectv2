@@ -17,8 +17,6 @@ namespace Entities.Concrete
         public string Phone { get; set; }
         public string Adress { get; set; }
         public bool IsActive { get; set; }
-        [ForeignKey("Title")]
         public int TitleId { get; set; }
-        public virtual Title Title { get; set; }
     }
 }

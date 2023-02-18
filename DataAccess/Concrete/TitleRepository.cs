@@ -9,10 +9,8 @@ using System.Threading.Tasks;
 
 namespace DataAccess.Concrete
 {
-    public class EmployeeRepository : GenericRepository<Employee>, IEmployeeDal
+    public class TitleRepository:GenericRepository<Title>,ITitleDal
     {
-        public EmployeeRepository(AppDb_Context appDb_Context) : base(appDb_Context)
-        {
-        }        
+        public TitleRepository(AppDb_Context appDb_Context) : base(appDb_Context) { }
     }
 }
