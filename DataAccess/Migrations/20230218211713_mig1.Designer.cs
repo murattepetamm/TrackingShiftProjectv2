@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DataAccess.Migrations
 {
     [DbContext(typeof(AppDb_Context))]
-    [Migration("20230217205549_newMigration")]
-    partial class newMigration
+    [Migration("20230218211713_mig1")]
+    partial class mig1
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -59,8 +59,6 @@ namespace DataAccess.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("TitleId");
 
                     b.ToTable("Employees");
                 });
@@ -173,17 +171,6 @@ namespace DataAccess.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Titles");
-                });
-
-            modelBuilder.Entity("Entities.Concrete.Employee", b =>
-                {
-                    b.HasOne("Entities.Concrete.Title", "Title")
-                        .WithMany()
-                        .HasForeignKey("TitleId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Title");
                 });
 
             modelBuilder.Entity("Entities.Concrete.ShiftOfTeam", b =>

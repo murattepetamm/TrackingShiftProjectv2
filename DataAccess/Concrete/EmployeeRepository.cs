@@ -11,8 +11,10 @@ namespace DataAccess.Concrete
 {
     public class EmployeeRepository : GenericRepository<Employee>, IEmployeeDal
     {
+        private readonly AppDb_Context _appDb_Context;
         public EmployeeRepository(AppDb_Context appDb_Context) : base(appDb_Context)
         {
+            _appDb_Context = appDb_Context;
         }        
     }
 }

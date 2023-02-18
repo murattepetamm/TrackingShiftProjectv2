@@ -12,9 +12,10 @@ namespace DataAccess.AppDbContext
     {
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer(@"Server = DESKTOP-6PV2PRJ; Database = TrackingShiftDb; Trusted_Connection = true");
+            optionsBuilder.UseSqlServer(@"Server = DESKTOP-6PV2PRJ; Database = TrackingShiftDb; Trusted_Connection = true; MultipleActiveResultSets=true");
         }
 
+        //public AppDb_Context(DbContextOptions<AppDb_Context> options) : base(options) { }
 
 
         //protected override void OnModelCreating(ModelBuilder modelBuilder)
