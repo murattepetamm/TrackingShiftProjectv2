@@ -1,7 +1,8 @@
-﻿using DataAccess.Abstract;
+﻿using Business.Abstract;
 using Entities.Concrete;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,36 +12,29 @@ namespace UI.Controllers
 {
     public class EmployeeController : Controller
     {
-        readonly IEmployeeDal _employeeDal;
-        readonly ITitleDal _titleDal;
-        public EmployeeController(IEmployeeDal employeeDal, ITitleDal titleDal)
+        readonly IEmployeeService _employeeService;
+        readonly ITitleService _titleService;
+        public EmployeeController(IEmployeeService employeeService, ITitleService titleService)
         {
-            _employeeDal = employeeDal;
-            _titleDal = titleDal;
+            _employeeService = employeeService;
+            _titleService = titleService;
         }
         public IActionResult Index()
         {
-
-            var getAllList = _employeeDal.GetAll().ToList();
-            foreach (var item in getAllList)
-            {
-                item.TitleName = _titleDal.GetAll().Where(x => x.Id == item.TitleId).FirstOrDefault().Name ?? "";
-            }
+            var getAllList = _employeeService.GetAll();
             return View(getAllList);
         }
 
         public IActionResult GetEmployeeById(int id)
         {
-            var getListById = _employeeDal.GetById(id);
+            var getListById = _employeeService.GetById(id);
             return View(getListById);
         }
 
         [HttpGet]
         public IActionResult CreateEmployee()
         {
-
-            ViewBag.getTitle = _titleDal.GetAll().ToList().Select(x => new SelectListItem { Text = x.Name, Value = x.Id.ToString() });
-
+            ViewBag.getTitle = _titleService.GetAll().ToList().Select(x => new SelectListItem { Text = x.Name, Value = x.Id.ToString() });
             return View();
         }
         [HttpPost]
@@ -48,7 +42,7 @@ namespace UI.Controllers
         {
             try
             {
-                await _employeeDal.Create(employee);
+                await _employeeService.Create(employee);
                 return RedirectToAction("Index", "Employee");
             }
             catch (Exception)
@@ -59,18 +53,18 @@ namespace UI.Controllers
         [HttpGet]
         public async Task<IActionResult> EditEmployee(int id)
         {
-            ViewBag.getTitle = _titleDal.GetAll().ToList().Select(x => new SelectListItem { Text = x.Name, Value = x.Id.ToString() });
-            return View(await _employeeDal.GetById(id));
+            ViewBag.getTitle = _titleService.GetAll().ToList().Select(x => new SelectListItem { Text = x.Name, Value = x.Id.ToString() });
+            return View(await _employeeService.GetById(id));
         }
         [HttpPost]
         public async Task<IActionResult> EditEmployee(Employee employee, int id)
         {
-            await _employeeDal.Update(id, employee);
+            await _employeeService.Update(id, employee);
             return RedirectToAction("Index", "Employee");
         }
         public async Task<IActionResult> DeleteEmployee(int id)
         {
-            await _employeeDal.Delete(id);
+            await _employeeService.Delete(id);
             return RedirectToAction("Index", "Employee");
         }
     }

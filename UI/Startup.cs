@@ -1,3 +1,5 @@
+using Business.Abstract;
+using Business.Concrete;
 using DataAccess.Abstract;
 using DataAccess.AppDbContext;
 using DataAccess.Concrete;
@@ -37,11 +39,22 @@ namespace UI
             //   options.UseSqlServer(Configuration.GetConnectionString("ConnectionStrings")));
 
             //services.AddTransient<IEmployeeDal, EmployeeRepository>();
-
+            services.AddControllersWithViews().AddRazorRuntimeCompilation();
             services.AddScoped<ITeamDal, TeamRepository>();
             services.AddScoped<ITitleDal, TitleRepository>();
             services.AddScoped<IShiftDal, ShiftRepository>();
             services.AddScoped<IEmployeeDal, EmployeeRepository>();
+            services.AddScoped<IShiftOfTeamDal, ShiftOfTeamRepository>();
+            services.AddScoped<ITeamOfEmployeeDal, TeamOfEmployeeRepository>();
+
+            services.AddScoped<IEmployeeService, EmployeeManager>();
+            services.AddScoped<ITitleService, TitleManager>();
+            services.AddScoped<ITeamService, TeamManager>();
+            services.AddScoped<IShiftService, ShiftManager>();
+            services.AddScoped<IShiftOfTeamService, ShiftOfTeamManager>();
+            services.AddScoped<ITeamOfEmployeeService, TeamOfEmployeeManager>();
+
+
             services.AddScoped(typeof(IRepository<>), typeof(GenericRepository<>));
             services.AddDbContext<AppDb_Context>();
 

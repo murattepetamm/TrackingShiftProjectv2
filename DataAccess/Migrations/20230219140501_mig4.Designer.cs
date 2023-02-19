@@ -4,14 +4,16 @@ using DataAccess.AppDbContext;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace DataAccess.Migrations
 {
     [DbContext(typeof(AppDb_Context))]
-    partial class AppDb_ContextModelSnapshot : ModelSnapshot
+    [Migration("20230219140501_mig4")]
+    partial class mig4
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -98,23 +100,11 @@ namespace DataAccess.Migrations
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("datetime2");
 
-                    b.Property<DateTime>("ShiftEndTime")
-                        .HasColumnType("datetime2");
-
                     b.Property<int>("ShiftId")
                         .HasColumnType("int");
 
-                    b.Property<string>("ShiftName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("ShiftStartTime")
-                        .HasColumnType("datetime2");
-
                     b.Property<int>("TeamId")
                         .HasColumnType("int");
-
-                    b.Property<string>("TeamName")
-                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 

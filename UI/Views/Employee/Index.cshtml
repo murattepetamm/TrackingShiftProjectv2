@@ -13,76 +13,138 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Code)
+                Kod
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Name)
+                Name
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Surname)
+                SurName
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Username)
+                UserName
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Email)
+                Email
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Phone)
+                Phone
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Adress)
+                Adress
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.IsActive)
+                Is Active
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.TitleName)
+                Title Name
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.CreatedAt)
+                Created Date
             </th>
             <th></th>
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Code)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Surname)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Username)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Email)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Phone)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Adress)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.IsActive)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.TitleName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.CreatedAt)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "EditEmployee", new { employee = item , id =item.Id}) |
-                @Html.ActionLink("Delete", "DeleteEmployee", new { id = item.Id })
-            </td>
-        </tr>
-}
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Code)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Surname)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Username)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Email)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Phone)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Adress)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.IsActive)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TitleName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CreatedAt)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "EditEmployee", new { employee = item, id = item.Id }, new { @class = "btn btn-info" }) |
+                    @Html.ActionLink("Delete", "DeleteEmployee", new { id = item.Id }, new { @class = "btn btn-warning" })
+                </td>
+            </tr>
+        }
     </tbody>
 </table>
+<div id="example">
+    <div id="grid"></div>
+
+    <script>
+        $(document).ready(function () {
+
+            fetch(lo/GetAllEmpyolee)
+                .then(function (response) {
+                    return response.json();
+                })
+                .then(function (jsonResponse) {
+                    // do something with jsonResponse
+                });
+
+
+            $("#grid").kendoGrid({
+                dataSource: {
+                    data: ,
+                    schema: {
+                        model: {
+                            fields: {
+                                Code: { type: "string" },
+                                Name: { type: "string" },
+                                Surname: { type: "string" },
+                                Username: { type: "string" }
+                            }
+                        }
+                    },
+                    pageSize: 20
+                },
+                height: 550,
+                scrollable: true,
+                sortable: true,
+                filterable: true,
+                pageable: {
+                    input: true,
+                    numeric: false
+                },
+                columns: [
+                    "ProductName",
+                    { field: "UnitPrice", title: "Unit Price", format: "{0:c}", width: "130px" },
+                    { field: "UnitsInStock", title: "Units In Stock", width: "130px" },
+                    { field: "Discontinued", width: "130px" }
+                ]
+            });
+        });
+    </script>
+</div>
+
+@section Scripts{
+    <script src="../content/shared/js/products.js"></script>
+    <link href="../content/shared/styles/examples-offline.css" rel="stylesheet">
+    <link href="../../styles/kendo.common.min.css" rel="stylesheet">
+    <link href="../../styles/kendo.rtl.min.css" rel="stylesheet">
+    <link href="../../styles/kendo.default.min.css" rel="stylesheet">
+    <link href="../../styles/kendo.default.mobile.min.css" rel="stylesheet">
+    <script src="../../js/jquery.min.js"></script>
+    <script src="../../js/jszip.min.js"></script>
+    <script src="../../js/kendo.all.min.js"></script>
+    <script src="../content/shared/js/console.js"></script>
+}

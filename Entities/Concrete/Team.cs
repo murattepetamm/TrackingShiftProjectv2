@@ -9,7 +9,7 @@ namespace Entities.Concrete
 {
     public class Team:BaseEntity
     {
-        public int Name { get; set; }        
+        public string Name { get; set; }        
 
     }
 }

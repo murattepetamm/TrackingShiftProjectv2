@@ -4,14 +4,16 @@ using DataAccess.AppDbContext;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace DataAccess.Migrations
 {
     [DbContext(typeof(AppDb_Context))]
-    partial class AppDb_ContextModelSnapshot : ModelSnapshot
+    [Migration("20230219174118_mig9")]
+    partial class mig9
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -156,8 +158,14 @@ namespace DataAccess.Migrations
                     b.Property<int>("EmployeeId")
                         .HasColumnType("int");
 
+                    b.Property<string>("EmployeeName")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<int>("TeamId")
                         .HasColumnType("int");
+
+                    b.Property<string>("TeamName")
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 

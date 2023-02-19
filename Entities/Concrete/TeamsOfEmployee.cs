@@ -11,9 +11,13 @@ namespace Entities.Concrete
     {
         [ForeignKey("Team")]
         public int TeamId { get; set; }
+        [NotMapped]
+        public IList<Team> Teams { get; set; }
         public virtual Team Team { get; set; }
         [ForeignKey("Employee")]
         public int EmployeeId { get; set; }
+        [NotMapped]
+        public IList<Employee> EmployeeNames { get; set; }
         public virtual Employee Employee { get; set; }
     }
 }
